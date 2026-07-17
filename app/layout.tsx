@@ -4,6 +4,13 @@ import "./globals.css";
 import { cn } from "@/lib/utils";
 import { TooltipProvider } from "@/components/ui/tooltip";
 
+import Link from "next/link";
+
+import MatrixScrollbar from "@/components/custom_ui/matrix-scrollbar";
+import Navbar from "@/components/custom_ui/navbar";
+import { ThemeProvider } from "@/components/custom_ui/theme-provider";
+import ThemeToggle from "@/components/custom_ui/theme-toggle";
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -27,6 +34,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
+      suppressHydrationWarning
       className={cn(
         "h-full",
         "antialiased",
@@ -35,8 +43,24 @@ export default function RootLayout({
         "font-sans",
       )}
     >
-      <body className="min-h-full flex flex-col">
-        <TooltipProvider>{children}</TooltipProvider>
+      <body className="min-h-full flex flex-col pr-5">
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          <TooltipProvider>
+            <MatrixScrollbar />
+            <header className="flex items-center justify-between p-2 border-b fixed w-full bg-background z-30">
+              <Link href="/">
+                <h1 className="font-mono">./Samuel</h1>
+              </Link>
+
+              <Navbar />
+
+              <div>
+                <ThemeToggle />
+              </div>
+            </header>
+            {children}
+          </TooltipProvider>
+        </ThemeProvider>
       </body>
     </html>
   );
