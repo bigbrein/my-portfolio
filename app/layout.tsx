@@ -7,6 +7,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import Link from "next/link";
 
 import MatrixScrollbar from "@/components/custom_ui/matrix-scrollbar";
+import MobileNav from "@/components/custom_ui/mobile-nav";
 import Navbar from "@/components/custom_ui/navbar";
 import { ThemeProvider } from "@/components/custom_ui/theme-provider";
 import ThemeToggle from "@/components/custom_ui/theme-toggle";
@@ -47,18 +48,19 @@ export default function RootLayout({
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <TooltipProvider>
             <MatrixScrollbar />
-            <header className="flex items-center justify-between p-2 border-b fixed w-full bg-background z-30">
+            <header className="flex items-center justify-between p-2 fixed w-full bg-background z-30 border-0 md:border-b">
               <Link href="/">
                 <h1 className="font-mono">./Samuel</h1>
               </Link>
 
               <Navbar />
 
-              <div>
+              <div className="hidden md:block">
                 <ThemeToggle />
               </div>
             </header>
             {children}
+            <MobileNav />
           </TooltipProvider>
         </ThemeProvider>
       </body>

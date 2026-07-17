@@ -3,7 +3,7 @@ import Link from "next/link";
 export default function Navbar() {
   return (
     <>
-      <nav className="flex gap-4">
+      <nav className="hidden md:flex gap-4">
         <Link
           href="/"
           className="hover:bg-accent p-2 rounded-md transition font-mono"

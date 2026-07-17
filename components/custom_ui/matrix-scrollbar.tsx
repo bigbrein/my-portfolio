@@ -27,9 +27,11 @@ export default function MatrixScrollbar() {
         scrollable > 0 ? Math.min(1, window.scrollY / scrollable) : 0,
       );
     }
+
     updateProgress();
     window.addEventListener("scroll", updateProgress, { passive: true });
     window.addEventListener("resize", updateProgress);
+
     return () => {
       window.removeEventListener("scroll", updateProgress);
       window.removeEventListener("resize", updateProgress);
@@ -55,7 +57,7 @@ export default function MatrixScrollbar() {
   return (
     <div
       aria-hidden
-      className="fixed inset-y-0 right-0 z-20 flex w-5 flex-col overflow-hidden bg-black/90 pointer-events-none"
+      className="fixed inset-y-0 right-0 z-20 flex w-5 flex-col overflow-hidden bg-transparent pointer-events-none"
     >
       {chars.map((char, index) => {
         const isFilled = index < filledRows;
