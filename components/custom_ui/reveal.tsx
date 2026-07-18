@@ -11,11 +11,20 @@ const directionClass = {
   right: "slide-in-from-right-10",
 } as const;
 
+const mdDirectionClass = {
+  bottom: "md:slide-in-from-bottom-10",
+  top: "md:slide-in-from-top-10",
+  left: "md:slide-in-from-left-10",
+  right: "md:slide-in-from-right-10",
+} as const;
+
 type RevealProps = {
   children: React.ReactNode;
   className?: string;
   direction?: keyof typeof directionClass;
   delay?: number;
+  /** Only animate at the md breakpoint and up; render plainly below it. */
+  mdOnly?: boolean;
 };
 
 export default function Reveal({
@@ -23,6 +32,7 @@ export default function Reveal({
   className,
   direction = "bottom",
   delay = 0,
+  mdOnly = false,
 }: RevealProps) {
   const ref = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
@@ -50,11 +60,17 @@ export default function Reveal({
       ref={ref}
       style={delay ? { animationDelay: `${delay}ms` } : undefined}
       className={cn(
-        !isVisible && "opacity-0",
-        isVisible && [
-          "animate-in fade-in fill-mode-both duration-700 ease-out",
-          directionClass[direction],
-        ],
+        !isVisible && (mdOnly ? "md:opacity-0" : "opacity-0"),
+        isVisible &&
+          (mdOnly
+            ? [
+                "md:animate-in md:fade-in md:fill-mode-both md:duration-700 md:ease-out",
+                mdDirectionClass[direction],
+              ]
+            : [
+                "animate-in fade-in fill-mode-both duration-700 ease-out",
+                directionClass[direction],
+              ]),
         className,
       )}
     >
