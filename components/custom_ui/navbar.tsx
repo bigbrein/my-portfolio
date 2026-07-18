@@ -5,7 +5,7 @@ export default function Navbar() {
     <>
       <nav className="hidden md:flex gap-4">
         <Link
-          href="/"
+          href="#home"
           className="hover:bg-accent p-2 rounded-md transition font-mono"
         >
           Home

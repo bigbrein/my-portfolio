@@ -1,7 +1,8 @@
 "use client";
 
-import { Menu } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import Link from "next/link";
+import { useState } from "react";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -12,26 +13,31 @@ import {
 import ThemeToggle from "@/components/custom_ui/theme-toggle";
 
 const links = [
+  { href: "/", label: "Home" },
   { href: "#skills", label: "Skills" },
   { href: "#about", label: "About" },
   { href: "#contact", label: "Contact" },
 ];
 
 export default function MobileNav() {
+  const [open, setOpen] = useState(false);
+
   return (
     <div className="md:hidden fixed bottom-5 right-5 z-40">
-      <Popover>
+      <Popover open={open} onOpenChange={setOpen}>
         <PopoverTrigger
           render={
             <Button
               variant="default"
               size="icon"
               className="h-12 w-12 rounded-full shadow-lg"
-              aria-label="Open navigation menu"
+              aria-label={
+                open ? "Close navigation menu" : "Open navigation menu"
+              }
             />
           }
         >
-          <Menu />
+          {open ? <X /> : <Menu />}
         </PopoverTrigger>
         <PopoverContent
           side="top"
@@ -44,7 +50,7 @@ export default function MobileNav() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="hover:bg-accent p-2 rounded-md transition font-mono text-sm"
+                className="hover:bg-accent p-2 rounded-md transition font-mono text-sm mx-auto"
               >
                 {link.label}
               </Link>

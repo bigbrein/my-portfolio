@@ -1,5 +1,6 @@
 "use client";
 
+import { Check, Copy } from "lucide-react";
 import { useState } from "react";
 
 import Reveal from "@/components/custom_ui/reveal";
@@ -10,14 +11,22 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 
 // Replace with your real email address.
-const CONTACT_EMAIL = "your.email@example.com";
+const CONTACT_EMAIL =
+  process.env.NEXT_PUBLIC_CONTACT_EMAIL || "your.email@example.com";
 
 export default function Contact() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
+  const [copied, setCopied] = useState(false);
 
-  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+  async function handleCopyEmail() {
+    await navigator.clipboard.writeText(CONTACT_EMAIL);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  }
+
+  function handleSubmit(e: React.SubmitEvent<HTMLFormElement>) {
     e.preventDefault();
 
     const subject = encodeURIComponent(
@@ -31,7 +40,7 @@ export default function Contact() {
   return (
     <section
       id="contact"
-      className="w-full max-w-3xl md:min-w-[40vw] mx-auto px-4 py-32"
+      className="min-h-[90vh] w-full max-w-3xl md:min-w-[40vw] mx-auto px-4 py-32 flex flex-col justify-center"
     >
       <Reveal>
         <TerminalWindow title="contact.sh">
@@ -55,7 +64,10 @@ export default function Contact() {
             </div>
 
             <div className="flex flex-col gap-1.5">
-              <Label htmlFor="email" className="font-mono text-muted-foreground">
+              <Label
+                htmlFor="email"
+                className="font-mono text-muted-foreground"
+              >
                 <span className="text-primary">&gt;</span> email
               </Label>
               <Input
@@ -86,9 +98,24 @@ export default function Contact() {
               />
             </div>
 
-            <Button type="submit" variant="outline" className="self-start font-mono">
-              send --now
-            </Button>
+            <div className="flex flex-wrap items-center gap-3">
+              <Button type="submit" variant="outline" className="font-mono">
+                send --now
+              </Button>
+
+              <button
+                type="button"
+                onClick={handleCopyEmail}
+                className="flex items-center gap-1.5 rounded-md px-2 py-1 font-mono text-sm text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
+              >
+                {copied ? (
+                  <Check className="size-3.5" />
+                ) : (
+                  <Copy className="size-3.5" />
+                )}
+                {copied ? "copied!" : CONTACT_EMAIL}
+              </button>
+            </div>
           </form>
         </TerminalWindow>
       </Reveal>
