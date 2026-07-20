@@ -136,6 +136,7 @@
 
 @layer utilities {
   /* Fades any background grid lines sitting behind the text itself. */
+
   .text-halo {
     text-shadow:
       0 0 4px var(--background),
