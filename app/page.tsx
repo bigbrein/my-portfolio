@@ -6,7 +6,7 @@ import Skills from "@/components/custom_ui/skills";
 
 export default function Home() {
   return (
-    <>
+    <main role="main">
       <Hero />
       <SectionDivider
         lines={["$ cd ./skills", "// loading proficiencies..."]}
@@ -26,6 +26,6 @@ export default function Home() {
       />
 
       <Contact />
-    </>
+    </main>
   );
 }
