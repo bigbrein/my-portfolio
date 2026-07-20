@@ -23,6 +23,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "./Samuel",
   description: "Hi! I'm Samuel. Let's build something amazing together.",
+  manifest: "/favicon/default/site.webmanifest",
 };
 
 export default function RootLayout({
