@@ -15,6 +15,8 @@ import ScrollProgress from "@/components/custom_ui/scroll-progress";
 import { ThemeProvider } from "@/components/custom_ui/theme-provider";
 import ThemeToggle from "@/components/custom_ui/theme-toggle";
 
+import { Analytics } from "@vercel/analytics/next";
+
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
@@ -62,6 +64,8 @@ export default function RootLayout({
             <Footer />
 
             <MobileNav />
+
+            <Analytics />
           </TooltipProvider>
         </ThemeProvider>
       </body>
