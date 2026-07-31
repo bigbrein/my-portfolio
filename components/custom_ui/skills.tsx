@@ -13,6 +13,7 @@ import {
   SiMongodb,
   SiClaudecode,
   SiClaude,
+  SiVercel,
 } from "react-icons/si";
 
 import Reveal from "@/components/custom_ui/reveal";
@@ -125,6 +126,11 @@ const SKILL_CATEGORIES: SkillCategory[] = [
         description:
           "AI agent for streamlining development tasks and code generation.",
         icon: SiClaudecode,
+      },
+      {
+        name: "Vercel",
+        description: "Platform for deploying and hosting web applications.",
+        icon: SiVercel,
       },
     ],
   },
