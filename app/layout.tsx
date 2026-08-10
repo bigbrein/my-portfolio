@@ -6,6 +6,8 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 
 import Link from "next/link";
 
+import { SpeedInsights } from "@vercel/speed-insights/next";
+
 import Footer from "@/components/custom_ui/footer";
 import MatrixRain from "@/components/custom_ui/matrix-rain";
 import MatrixScrollbar from "@/components/custom_ui/matrix-scrollbar";
@@ -66,6 +68,8 @@ export default function RootLayout({
             <MobileNav />
 
             <Analytics />
+
+            <SpeedInsights />
           </TooltipProvider>
         </ThemeProvider>
       </body>
