@@ -9,10 +9,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-
-// Replace with your real email address.
-const CONTACT_EMAIL =
-  process.env.NEXT_PUBLIC_CONTACT_EMAIL || "your.email@example.com";
+import { CONTACT_EMAIL } from "@/lib/site/contact";
 
 export default function Contact() {
   const [name, setName] = useState("");

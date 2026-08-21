@@ -21,6 +21,12 @@ export default function Navbar() {
           Skills
         </Link>
         <Link
+          href="#projects"
+          className="hover:bg-accent p-2 rounded-md transition font-mono"
+        >
+          Projects
+        </Link>
+        <Link
           href="#about"
           className="hover:bg-accent p-2 rounded-md transition font-mono"
         >
